@@ -1,0 +1,295 @@
+Task:-
+-----------------------(1). Create Table Name : Student and Exam---------------------------------------------
+        
+Primary key
+Roll no.	Name	         Branch
+   1	     Jay	     Computer Science
+   2	    Suhani	Electronic and Com
+   3	     Kriti	Electronic and Com
+
+Foreign key
+Roll no.	S_code	Marks	     P_code
+   1	      CS11  	 50	       CS
+   1	      CS12	       60	       CS
+   2	      EC101	       66	       EC
+   2	      EC102	       70	       EC
+   3	      EC101	       45	       EC
+   3	      EC102	       50	       EC
+
+Query:-------
+
+Create Database School;
+
+Create Table Student(Roll_no int Auto_increment,
+                     Name varchar(100),
+                     Branch varchar(100),
+                     Primary key(Roll_no)
+                    );
+
+Create Table Exam(Roll_no int,
+                  S_code varchar(100),
+                  Marks int,
+                  P_code varchar(100),
+                  Foreign key(Roll_no)References
+                  Student(Roll_no)
+                  );
+
+Insert into Student(Roll_no,Name,Branch)
+             Values(1,”Jay”,”Computer Science”),
+                   (2,”Suhani”,”Electronic and Com”),
+                   (3,”Kriti”,”Electronic and Com”);
+
+Insert into Exam(Roll_no,S_code,Marks,P_code)
+           Values(1,”CS11”,50,”CS”),
+                 (1,”CS12”,60,”CS”),
+                 (2,”EC101”,66,”EC”),
+                 (2,”EC102”,70,”EC”),
+                 (3,”EC101”,45,”EC”),
+                 (3,”EC102”,50,”EC”);
+
+
+
+------------------------(2). Create Table given below----------------------------------------------------------------------------
+
+First Name	Last Name	    Address	               City	     Age
+Mickey	  Mouse	  123 Fantasy Way	        Anaheim	      73
+Bat	        Man	        321 Cavern Ave	        Gotham	      54
+Wonder	  Woman	  987 Truth Way	        Paradise	      39
+Donald	  Duck	  555 Quack Street	  Mallard	      65
+Bugs	        Bunny	  567 Carrot Street	  Rascal	      58
+Wiley	        Coyote	  999 Acme Way            Canyon	      61
+Cat	        Woman	  234 Purrfect Street	  Hairball	      35
+Tweety	  Bird	  543	                    Itotltaw	      28
+
+Query:-------
+
+Create Database Person;
+
+Create Table Biodata(First_Name varchar(100),
+                     Last_Name varchar(100),
+                     Address varchar(100),
+                     City varchar(100),
+                     Age int );
+
+INSERT INTO biodata(First_Name,Last_Name,Address,City,Age)
+           VALUES("Mickey","Mouse","123 Fantasy way","Anaheim",73),
+                   ("Bat","Man","321 Cavern Ave","Gotham",54),
+                   ("Wonder","Woman","987 Truth Way","Paradise",39),
+                   ("Donald","Duck","555 Quack Street","Mallard",65),
+                   ("Bugs","Bunny","567 Carrot street","Rascal",58),
+                   ("Wiley","Coyote","999 Acme Way","Canyon",61),
+                   ("Cat","Woman","234 Purrfect Street","Hairball",32),
+                   ("Tweety","Bird","543","Itotlaw",28);
+
+
+
+---------------------------(3)Create Table given below: Employee and Incentive--------------------------------------------------------------
+
+Table Name: Employee
+
+Employee_id    First_Name	Last_Name	Salary	Joining_date	      Department
+    1	           John	       Abraham	1000000	01-JAN-13 12.00.00AM	 Banking
+    2	           Michael	 Clarke	800000	01-JAN-13 12.00.00AM	 Insurance
+    3	           Roy	       Thomas	700000	01-FEB-13 12.00.00AM	 Banking
+    4	           Tom	       Jose	      600000	01-FEB-13 12.00.00AM	 Insurance
+    5	           Jerry	       Pinto	650000	01-FEB-13 12.00.00AM	 Insurance
+    6	           Philip    	 Mathew	750000	01-JAN-13 12.00.00AM	 Services
+    7	           TestName1	 123	      650000	01-JAN-13 12.00.00AM	 Services
+    8	           TestName2	 Lname%	600000	01-FEB-13 12.00.00AM	 Insurance
+
+Table Name: Incentive
+
+Employee_ref_id	 Incentive_date	Incentive_amount
+   1	                01-FEB-13	    5000
+   2	                01-FEB-13	    3000
+   3	                01-FEB-13	    4000
+   1	                01-JAN-13	    4500
+   2	                01-JAN-13	    3500
+
+
+Query:------
+
+Create Database Company;
+Create Table Employee(Employee_id int AUTO_INCREMENT,
+                      First_Name varchar(100),
+                      Last_Name varchar(100),
+                      Salary int,
+                      Joining_date varchar(100),
+                      Department varchar(100),
+                      PRIMARY KEY(Employee_id)
+                      );
+
+Insert Into employee(Employee_id,First_Name,Last_Name,Salary,Joining_date,Department)
+         VALUES(1,"John","Abraham",1000000,"01-JAN-13 12.00.00 AM","Banking"),
+               (2,"Michael","Clarke",800000,"01-JAN-13 12.00.00 AM","Insurance"),
+                (3,"Roy","Thomas",700000,"01-FEB-13 12.00.00 AM","Banking"),
+                (4,"Tom","Jose",600000,"01-FEB-13 12.00.00 AM","Insurance"),
+                (5,"Jerry","Pinto",650000,"01-FEB-13 12.00.00 AM","Insurance"),
+                (6,"Philip","Mathew",750000,"01-JAN-13 12.00.00 AM","Services"),
+                (7,"TestName1","123",650000,"01-JAN-13 12.00.00 AM","Services"),
+                (8,"TestName2","Lname%",600000,"01-FEB-13 12.00.00 AM","Insurance");
+
+CREATE TABLE Incentive (Employee_ref_id INT,
+                       Incentive_date DATE,
+                       Incentive_amount INT,
+                       FOREIGN KEY (Employee_ref_id) 
+                       REFERENCES Employee(Employee_id)
+                       );
+
+INSERT INTO incentive(Employee_ref_id,Incentive_date,Incentive_amount)
+              VALUES(1,"01-FEB-13",5000),
+                     (2,"01-FEB-13",3000),
+                     (3,"01-FEB-13",4000),
+                     (1,"01-JAN-13",4500),
+                     (2,"01-JAN-13",3500);
+
+(a)Get First_Name from employee table using Tom name “Employee Name”.
+
+Query:-    SELECT First_Name
+           FROM Employee
+           WHERE First_Name = 'Tom';
+
+(b)Get FIRST_NAME, Joining Date, and Salary from employee table.
+
+Query:-    SELECT First_Name, Joining_Date, Salary
+           FROM Employee;
+
+(c)Get all employee details from the employee table order by First_Name
+      Ascending and Salary descending?
+
+Query:-    SELECT *
+           FROM Employee
+           ORDER BY First_Name ASC, Salary DESC;
+
+(d)Get employee details from employee table whose first name contains”J”.
+
+Query:-    SELECT *
+           FROM Employee
+           WHERE First_Name LIKE '%J%';
+
+(e)Get department wise maximum salary from employee table order by      
+salary ascending?
+
+Query:-    SELECT Department, MAX(Salary) AS Max_Salary
+           FROM Employee
+           GROUP BY Department
+           ORDER BY Max_Salary ASC;
+
+(f)Select First_Name, incentive amount from employee and incentives table
+     For those employees who have incentives amount greater than 3000.
+
+Query:-    SELECT Department, MAX(Salary) AS Max_Salary
+           FROM Employee
+           GROUP BY Department
+           ORDER BY Max_Salary ASC;
+
+(g)Create After Insert trigger on employee table which insert records in           
+      View table.
+
+Query:-    SELECT First_Name, Incentive_Amount
+           FROM Employee e
+           JOIN Incentive  ON Employee_ID = Employee_Ref_ID
+           WHERE Incentive_Amount > 3000;
+
+
+
+------------------------------(4) Create Table given below: Salesperson and Customer-------------------------------------------------------------
+
+Table:-1------
+
+TABLE NAME-SALESPERSON
+
+(PK)S No	SNAME 	CITY	      COMM
+  1001	Peel	     London 	.12
+  1002	Serres     San Jose	.13
+  1004	Motika     London	      .11
+  1007	Rafkin     Barcelona	.15
+  1003	Axelrod    New York	.1
+
+Table:-2--------
+
+TABLE NAME-CUSTOMER
+
+(PK)CNM.	 CNAME	CITY	      RATING    (FK)S No
+  201	      Hoffman	London	 100	      1001
+  202	      Giovanne	Roe	       200	      1003
+  203	      Liu	      San Jose	 300	      1002
+  204	      Grass	      Barcelona	 100	      1002
+  206	      Clemens	London	 300	      1007
+  207	      Pereira	Roe	       100	      1004
+
+Query:-         
+
+CREATE TABLE Salesperson (SNo INT AUTO_INCREMENT,
+                         SName VARCHAR(50),
+                         City VARCHAR(50),
+                         Comm int,
+                         PRIMARY KEY (SNo)
+                          );
+
+INSERT INTO Salesperson (SNo, SName, City, Comm)
+                 VALUES (1001, 'Peel', 'London', 0.12),
+                        (1002, 'Serres', 'San Jose', 0.13),
+                        (1004, 'Motika', 'London', 0.11),
+                        (1007, 'Rafkin', 'Barcelona', 0.15),
+                        (1003, 'Axelrod', 'New York', 0.1);
+
+CREATE TABLE Customer (CNM INT AUTO_INCREMENT,
+                       CName VARCHAR(50),
+                       City VARCHAR(50),
+                       Rating INT,
+                       SNo INT,
+                       PRIMARY KEY(CNM),  
+                       FOREIGN KEY (SNo) REFERENCES Salesperson(SNo)
+                       );
+
+INSERT INTO Customer (CNM, CName, City, Rating, SNo)
+              VALUES (201, 'Hoffman', 'London', 100, 1001),
+                     (202, 'Giovanne', 'Roe', 200, 1003),
+                     (203, 'Liu', 'San Jose', 300, 1002),
+                     (204, 'Grass', 'Barcelona', 100, 1002),
+                     (206, 'Clemens', 'London', 300, 1007),
+                     (207, 'Pereira', 'Roe', 100, 1004);
+
+Retrieve the below data from above table:- 
+
+(a)All orders for more than $1000.
+
+Query:-        SELECT *
+               FROM Customer
+               WHERE Rating > 1000;
+
+(b)Names and cities of all salespeople in London with commission above 0.12.
+
+Query:-        SELECT SName, City
+               FROM Salesperson
+               WHERE City = 'London' AND Comm > 0.12;
+
+(c)All salespersons either in Barcelona or in London:
+ 
+Query:-        SELECT *
+               FROM Salesperson
+               WHERE Comm > 0.10 AND Comm < 0.12;
+
+(d)All salespersons with commission between 0.10 and 0.12 (boundary values excluded):
+
+Query:-        SELECT *
+               FROM Salesperson
+               WHERE Comm > 0.10 AND Comm < 0.12;
+
+(e)All customers excluding those with a rating <= 100 unless they are located in Rome:
+
+Query:-        SELECT *
+               FROM Customer
+               WHERE Rating > 100 OR City = 'Rome';
+
+
+
+
+
+
+
+
+
+
+
